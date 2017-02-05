@@ -1,0 +1,44 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx} % image handling
+\usepackage{amsmath,amssymb} % math packages
+\usepackage[none]{hyphenat}
+\usepackage{tikz}
+\usepackage{siunitx}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{minted}
+\usepackage{framed}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\renewcommand{\arraystretch}{1.5}
+
+\setminted[c]{
+    %frame=lines,
+    tabsize=4,
+    fontsize=\footnotesize,
+    autogobble % remove trailing whitespace
+}
+
+\begin{document} \pagenumbering{gobble}
+
+% cover page
+\begin{center}
+    {\scshape\huge ELEC2204\par} \vspace{0.5cm}
+    {\scshape\Large Computer Engineering\par} \vspace{2cm}
+    {\scshape Updated: \today}
+\end{center}
+\pagebreak
+
+% contents page
+\tableofcontents \pagebreak
+
+\pagenumbering{arabic}
+
+% include topic files
+\include{arithmetic}
+
+\end{document}
