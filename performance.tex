@@ -1,0 +1,99 @@
+\section{Performance}
+
+\subsection{MIPS: Millions of Instructions Per Second}
+
+\begin{itemize}
+    \item[$\ominus$] Doesn't take into account the complexity of the instructions.
+    \item[$\ominus$] Varies between programs on the same computer; so cannot allocate a single MIPS to a machine under test.
+\end{itemize}
+\begin{align*}
+    \mbox{MIPS}&=\frac{\mbox{Instruction Count}}{\mbox{Execution Time}\times 10^6} \\
+    & = \frac{\mbox{Instruction Count}}{\frac{\mbox{Instruction Count$\times$CPI}}{\mbox{Clock Rate}}\times 10^6} = \frac{\mbox{Clock Rate}}{\mbox{CPI}\times 10^6}
+\end{align*}
+
+\subsection{MFLOPS: Million Floating Point Operations Per Second}
+
+This measure of performance looks at the number of floating point operations completed per second. This doesn't take other tasks into account and not all floating point operations are implemented on all machines, eg. one machine may require more operations to do a task than another and would therefore have a higher MFLOPS rating.
+
+\begin{equation*}
+    \mbox{FLOPS} = \frac{\mbox{Floating Point Operations}}{\mbox{Execution Time}\times 10^6}
+\end{equation*}
+
+\subsection{Response Time and Throughput}
+Response time is how long it takes to complete a task. Throughput is the total work done per unit time, eg. tasks/transactions per hour.
+
+\subsection{Relative Performance}
+
+\begin{align*}
+    \mbox{Performance} &= \frac{1}{\mbox{Execution Time}} \\
+    \frac{\mbox{Performance}_x}{\mbox{Performance}_y} &= \frac{\mbox{Execution Time}_y}{\mbox{Execution Time}_x} = n
+    \label{eqn:performance}
+\end{align*}
+
+For example, time taken to run a program on machine A is 10s but 15s on machine B. This means that A is 1.5 times faster than B.
+
+\subsection{Measuring Execution Time}
+There are two ways to measure execution time of a program.
+\begin{itemize}
+    \item Elapsed Time: Total response time including all aspects, processing, I/O, OS overhead, idle time etc.
+    \item CPU Time: Time spent processing a given job. Comprises of user CPU time and system CPU time. Different programs are affected differently by CPU and system performance.
+\end{itemize}
+
+\subsection{CPU Clocking}
+
+\begin{align*}
+    \mbox{CPU Time} &= \mbox{CPU Clock Cycles} \times \mbox{Clock Cycle Time} \\
+    &= \frac{\mbox{CPU Clock Cycles}}{\mbox{Clock Rate}}   
+\end{align*}
+
+Performance of a system can be improved by reducing the number of clock cycles or increasing the clock rate. Hardware designer often makes trade off between clock rate and cycle count.
+
+\begin{framed}
+\textbf{Computer A: 2GHz clock, 10s CPU time\\Designing Computer B: Aim for 6s CPU time, faster clock causes 1.2 $\times$ clock cycles.\\Determine the required clock rate of Computer B.}
+\begin{align*}
+    \mbox{Clock Rate}_B &= \frac{\mbox{Clock Cycles}_A}{\mbox{CPU Time}_B} = \frac{1.2\times\mbox{Clock Cycles}_A}{6\mbox{s}} \\
+    \mbox{Clock Cycles}_A &= \mbox{CPU Time}_A \times \mbox{Clock Rate}_A \\
+    &= 10\mbox{s} \times 2\mbox{GHz} = 20\times10^9 \\
+    \mbox{Clock Rate}_B &=  \frac{1.2\times20\times10^9}{6\mbox{s}} = \boxed{4\mbox{GHz}}
+\end{align*}    
+\end{framed}
+
+\subsection{Instruction Count and CPI}
+
+Instruction count for a program is determined by the program, ISA and compiler. Average cycles per instruction are determined by CPU hardware.
+
+\begin{framed}
+\textbf{Computer A: Cycle Time = 250ps, CPI = 2.0\\Computer B: Cycle Time = 500ps, CPI = 1.2\\Same ISA\\Which is faster and by how much?}
+\begin{align*}
+    \mbox{CPU Time}_A &= \mbox{Instruction Count} \times \mbox{CPI}_A \times \mbox{Cycle Time}_A \\
+    &= \mbox{I}\times 2.0 \times 250\mbox{ps} = \mbox{I}\times 500\mbox{ps} \\
+    \mbox{CPU Time}_B &= \mbox{I}\times 1.2 \times 500\mbox{ps} = \mbox{I}\times 600\mbox{ps} \\
+    \frac{\mbox{CPU Time}_B}{\mbox{CPU Time}_A} &= \frac{\mbox{I}\times 600\mbox{ps}}{\mbox{I}\times 500\mbox{ps}} = \boxed{1.2}
+\end{align*}
+Therefore, A is 1.2 times faster than B.
+\end{framed}
+
+\subsection{CPI in More Detail}
+If different instruction classes take different numbers of cycles,
+
+$$ \mbox{Clock Cycles} = \sum^n_{i=1}(\mbox{CPI}_i \times \mbox{Instruction Count}_i) $$
+
+Weighted average CPI,
+
+$$ \mbox{CPI} = \frac{\mbox{Clock Cycles}}{\mbox{Instruction Count}} = \sum^n_{i=1}\left(\mbox{CPI}_i \times \frac{\mbox{Instruction Count}_i}{\mbox{Instruction Count}}\right) $$
+
+\subsection{Performance Summary}
+
+Performance depends on the algorithm of the program, programming language, compiler and instruction set architecture.
+
+$$ \mbox{CPU Time} = \frac{\mbox{Instructions}}{\mbox{Program}} \times \frac{\mbox{Clock Cycles}}{\mbox{Instruction}} \times \frac{\mbox{Seconds}}{\mbox{Clock Cycles}} $$
+
+
+
+
+
+
+
+
+
+
